@@ -7,25 +7,29 @@ const bookingRouter = require("./routes/bookingRoute");
 const adminRouter = require("./routes/adminRoute");
 
 const app = express();
-
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://dental.molaraiche.com/",
+  "https://dental.molaraiche.com",
   "https://api-dental.molaraiche.com",
 ];
+
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
-  allowedHeaders: "Content-Type, Authorization",
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
+// Handle preflight requests explicitly
+app.options("*", cors(corsOptions));
+
+// Apply CORS middleware
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
