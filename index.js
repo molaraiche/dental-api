@@ -11,7 +11,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "https://dental.molaraiche.com/",
-  "https://api.dental.molaraiche.com",
+  "https://api-dental.molaraiche.com",
 ];
 const corsOptions = {
   origin: function (origin, callback) {

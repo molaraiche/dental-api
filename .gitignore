@@ -44,3 +44,4 @@ debug.log
 # PM2 logs
 *.log
 pids/
+.vercel
