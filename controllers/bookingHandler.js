@@ -26,7 +26,7 @@ const getBookById = async (req, res) => {
 };
 const demandBook = async (req, res) => {
   try {
-    const { carName, name, phone, date, message } = req.body;
+    const { carName, name, email, phone, date, message } = req.body;
     if (!date) {
       return res.status(400).json({ message: "Date are required." });
     }
@@ -34,6 +34,7 @@ const demandBook = async (req, res) => {
     const newDemand = new Booking({
       carName,
       name,
+      email,
       phone,
       date,
       message,
